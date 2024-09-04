@@ -13,10 +13,6 @@ terraform {
 
 provider "azurerm" {
   features {}
-}
-
-provider "azurerm" {
-  features {}
   subscription_id = var.log_analytics_sub_id
 
 }
