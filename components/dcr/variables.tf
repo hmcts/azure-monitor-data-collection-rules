@@ -17,7 +17,7 @@ variable "location" {
 
 variable "builtFrom" {
   type        = string
-  description = "Repo the resources are built from."
+  description = "Repo the resources are built from!"
   default     = "hmcts/azure-monitor-data-collection-rules"
 }
 
