@@ -3,6 +3,11 @@ variable "env" {
   type        = string
 }
 
+variable "subscription_id" {
+  description = "The ID of the subscription in Azure."
+  type        = string
+}
+
 variable "product" {
   description = "The product that the resource belongs to."
   type        = string
@@ -19,10 +24,4 @@ variable "builtFrom" {
   type        = string
   description = "Repo the resources are built from!"
   default     = "hmcts/azure-monitor-data-collection-rules"
-}
-
-variable "log_analytics_sub_id" {
-  description = "The subscription ID of the Log Analytics Workspace."
-  type        = string
-  default     = "bf308a5c-0624-4334-8ff8-8dca9fd43783" # hmcts-sandbox
 }
