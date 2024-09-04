@@ -1,6 +1,8 @@
 terraform {
   required_version = ">= 1.7.5"
 
+  backend "azurerm" {}
+
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -10,6 +12,7 @@ terraform {
 }
 
 provider "azurerm" {
+  alias = "log_analytics"
   features {}
   subscription_id = var.log_analytics_sub_id
 }
