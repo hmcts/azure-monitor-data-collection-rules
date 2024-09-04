@@ -5,6 +5,9 @@ settings:
 
 formatter: "md"
 
+recursive:
+  enabled: true
+
 sections:
   show-all: true
 
