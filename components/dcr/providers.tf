@@ -10,7 +10,6 @@ terraform {
 }
 
 provider "azurerm" {
-  # alias = "log_analytics"
   features {}
-  # subscription_id = var.log_analytics_sub_id
+  subscription_id = var.log_analytics_sub_id
 }
