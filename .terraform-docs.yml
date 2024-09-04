@@ -3,11 +3,14 @@
 settings:
   hide-empty: true
 
-formatter: "md"
+formatter: "markdown table"
+
+sections:
+  show:
+    - requirements
+    - inputs
+    - outputs
+    - resources
 
 output:
   file: README.md
-  template: |-
-    <!-- BEGIN_TF_DOCS -->
-    {{ .Content }}
-    <!-- END_TF_DOCS -->
