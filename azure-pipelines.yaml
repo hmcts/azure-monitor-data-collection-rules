@@ -1,0 +1,86 @@
+name: Azure Monitor Data Collection Rules
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+
+resources:
+  repositories:
+    - repository: cnp-azuredevops-libraries
+      type: github
+      ref: refs/heads/master
+      name: hmcts/cnp-azuredevops-libraries
+      endpoint: "hmcts"
+
+variables:
+  - name: timeoutInMinutes
+    value: 60
+  - name: agentPool
+    value: ubuntu-latest
+  - name: product
+    value: mgmt
+  - name: terraformInitSubscription
+    value: 04d27a32-7a07-48b3-95b8-3c8691e1a263
+  - template: vars/input-variables.yaml@cnp-azuredevops-libraries
+
+parameters:
+  - name: overrideAction
+    type: string
+    default: plan
+    values:
+      - plan
+      - apply
+
+  - name: environment_components
+    type: object
+    default:
+      - stage: "sandbox"
+        environment: "sandbox"
+        component: "dcr"
+        service_connection: "DCD-CFT-Sandbox"
+        dependsOn: "Precheck"
+
+      - stage: "nonprod"
+        environment: "nonprod"
+        component: "dcr"
+        service_connection: "DCD-CFT-DEV"
+        dependsOn: "Precheck"
+
+      - stage: "prod"
+        environment: "prod"
+        component: "dcr"
+        service_connection: "DCD-CNP-Prod"
+        dependsOn: "Precheck"
+
+stages:
+  - stage: Precheck
+    jobs:
+      - job: Precheck
+        pool:
+          vmImage: ${{ variables.agentPool }}
+        timeoutInMinutes: ${{ variables.timeoutInMinutes }}
+        steps:
+          - template: steps/terraform-precheck.yaml@cnp-azuredevops-libraries
+            parameters:
+              keyvaultName: "infra-vault-nonprod"
+              keyvaultSecret: "azure-devops-sp-token"
+              serviceConnection: "DCD-CFT-Sandbox"
+              overrideAction: ${{ parameters.overrideAction }}
+  - ${{ each deployment in parameters.environment_components }}:
+      - stage: ${{ deployment.stage }}
+        dependsOn: ${{ deployment.dependsOn }}
+        jobs:
+          - job: TerraformPlanApply
+            pool:
+              vmImage: ${{ variables.agentPool }}
+            timeoutInMinutes: ${{ variables.timeoutInMinutes }}
+            steps:
+              - template: steps/terraform.yaml@cnp-azuredevops-libraries
+                parameters:
+                  overrideAction: ${{ parameters.overrideAction }}
+                  environment: ${{ deployment.environment }}
+                  component: ${{ deployment.component }}
+                  serviceConnection: ${{ deployment.service_connection }}
+                  terraformInitSubscription: ${{ variables.init_subscription }}
+                  product: ${{ variables.product }}
