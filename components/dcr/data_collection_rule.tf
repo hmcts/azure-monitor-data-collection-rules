@@ -17,6 +17,16 @@ resource "azurerm_monitor_data_collection_rule" "windows_data_collection_rule" {
     destinations = [local.log_analytics_workspace]
   }
 
+  data_flow {
+    streams      = ["Microsoft-Event"]
+    destinations = [local.log_analytics_workspace]
+  }
+
+  data_flow {
+    streams      = ["Microsoft-SecurityEvent"]
+    destinations = [local.log_analytics_workspace]
+  }
+
   data_sources {
     windows_event_log {
       streams        = ["Microsoft-WindowsEvent"]
