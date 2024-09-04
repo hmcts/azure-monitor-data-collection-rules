@@ -3,10 +3,10 @@
 settings:
   hide-empty: true
 
-formatter: "markdown table"
+formatter: "md"
 
 sections:
   show-all: true
 
 output:
-  file: ../../README.md
+  file: README.md
