@@ -15,6 +15,12 @@ variable "location" {
   default     = "UK South"
 }
 
+variable "builtFrom" {
+  type        = string
+  description = "Repo the resources are built from."
+  default     = "hmcts/azure-monitor-data-collection-rules"
+}
+
 variable "log_analytics_sub_id" {
   description = "The subscription ID of the Log Analytics Workspace."
   type        = string
