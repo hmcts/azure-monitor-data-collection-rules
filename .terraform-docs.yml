@@ -9,4 +9,4 @@ sections:
   show-all: true
 
 output:
-  file: docs.md
+  file: ../../README.md
