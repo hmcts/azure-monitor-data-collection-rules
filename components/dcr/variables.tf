@@ -1,5 +1,5 @@
 variable "env" {
-  description = "The environment that the Data collection rule will be deployed to."
+  description = "The environment that the resource belongs to."
   type        = string
 }
 
@@ -10,7 +10,7 @@ variable "product" {
 }
 
 variable "location" {
-  description = "The region in Azure that the Data collection rule will be deployed to."
+  description = "The region in Azure that the resource will be deployed to."
   type        = string
   default     = "UK South"
 }
