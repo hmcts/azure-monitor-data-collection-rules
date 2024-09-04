@@ -1,5 +1,4 @@
 resource "azurerm_monitor_data_collection_rule" "windows_data_collection_rule" {
-  provider            = azurerm.log_analytics
   name                = "ama-windows-vm-logs"
   resource_group_name = data.azurerm_log_analytics_workspace.workspace.resource_group_name
   location            = var.location
@@ -40,7 +39,6 @@ resource "azurerm_monitor_data_collection_rule" "windows_data_collection_rule" {
 }
 
 resource "azurerm_monitor_data_collection_rule" "linux_data_collection_rule" {
-  provider            = azurerm.log_analytics
   name                = "ama-linux-vm-logs"
   resource_group_name = data.azurerm_log_analytics_workspace.workspace.resource_group_name
   location            = var.location
