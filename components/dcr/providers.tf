@@ -9,7 +9,6 @@ terraform {
   }
 }
 
-# provider "azurerm" {
-#   features {}
-#   subscription_id = var.log_analytics_sub_id
-# }
+provider "azurerm" {
+  features {}
+}
