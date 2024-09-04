@@ -44,7 +44,7 @@ parameters:
       - stage: "nonprod"
         environment: "nonprod"
         component: "dcr"
-        service_connection: "DCD-CFT-DEV"
+        service_connection: "DCD-CNP-DEV"
         dependsOn: "Precheck"
 
       - stage: "prod"
