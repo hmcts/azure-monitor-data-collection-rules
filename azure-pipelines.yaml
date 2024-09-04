@@ -82,5 +82,5 @@ stages:
                   environment: ${{ deployment.environment }}
                   component: ${{ deployment.component }}
                   serviceConnection: ${{ deployment.service_connection }}
-                  terraformInitSubscription: ${{ variables.init_subscription }}
+                  terraformInitSubscription: ${{ variables.terraformInitSubscription }}
                   product: ${{ variables.product }}
