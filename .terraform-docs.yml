@@ -6,11 +6,7 @@ settings:
 formatter: "markdown table"
 
 sections:
-  show:
-    - requirements
-    - inputs
-    - outputs
-    - resources
+  show-all: true
 
 output:
-  file: README.md
+  file: docs.md
