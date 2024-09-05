@@ -36,13 +36,13 @@ parameters:
     type: object
     default:
       - stage: "sandbox"
-        environment: "sandbox"
+        environment: "sbox"
         component: "dcr"
         service_connection: "DCD-CFT-Sandbox"
         dependsOn: "Precheck"
 
       - stage: "nonprod"
-        environment: "nonprod"
+        environment: "dev"
         component: "dcr"
         service_connection: "DCD-CNP-DEV"
         dependsOn: "Precheck"
