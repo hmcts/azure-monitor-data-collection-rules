@@ -20,8 +20,20 @@ resource "azurerm_monitor_data_collection_rule" "windows_data_collection_rule" {
   data_sources {
     windows_event_log {
       streams        = ["Microsoft-WindowsEvent"]
-      x_path_queries = ["*![System/Level=1]"]
+      x_path_queries = ["*"]
       name           = "ms-windows-event-log"
+    }
+
+    windows_event_log {
+      streams        = ["Microsoft-Event"]
+      x_path_queries = ["*"]
+      name           = "ms-event-log"
+    }
+
+    windows_event_log {
+      streams        = ["Microsoft-SecurityEvent"]
+      x_path_queries = ["*"]
+      name           = "ms-security-event-log"
     }
   }
 }
