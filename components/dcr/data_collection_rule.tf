@@ -13,16 +13,19 @@ resource "azurerm_monitor_data_collection_rule" "windows_data_collection_rule" {
   }
 
   data_flow {
-    streams      = ["Microsoft-Perf"]
+    streams      = ["Microsoft-Event"]
     destinations = [local.log_analytics_workspace]
   }
 
   data_sources {
-    performance_counter {
-      streams                       = ["Microsoft-Perf"]
-      sampling_frequency_in_seconds = 300
-      counter_specifiers            = ["Logical Disk(*)\\% Free"]
-      name                          = "ms-performance"
+    windows_event_log {
+      streams = ["Microsoft-Event"]
+      x_path_queries = [
+        "Application!*[System[(Level=1 or Level=2 or Level=3)]]",
+        "System!*[System[(Level=1 or Level=2 or Level=3)]]",
+        "Security!*[System[(band(Keywords,13510798882111488))]]"
+      ]
+      name = "ms-event-log"
     }
   }
 }
