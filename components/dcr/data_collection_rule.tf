@@ -13,27 +13,16 @@ resource "azurerm_monitor_data_collection_rule" "windows_data_collection_rule" {
   }
 
   data_flow {
-    streams      = ["Microsoft-WindowsEvent", "Microsoft-Event", "Microsoft-SecurityEvent"]
+    streams      = ["Microsoft-Perf"]
     destinations = [local.log_analytics_workspace]
   }
 
   data_sources {
-    windows_event_log {
-      streams        = ["Microsoft-WindowsEvent"]
-      x_path_queries = ["*"]
-      name           = "ms-windows-event-log"
-    }
-
-    windows_event_log {
-      streams        = ["Microsoft-Event"]
-      x_path_queries = ["*"]
-      name           = "ms-event-log"
-    }
-
-    windows_event_log {
-      streams        = ["Microsoft-SecurityEvent"]
-      x_path_queries = ["*"]
-      name           = "ms-security-event-log"
+    performance_counter {
+      streams                       = ["Microsoft-Perf"]
+      sampling_frequency_in_seconds = 300
+      counter_specifiers            = ["Logical Disk(*)\\% Free"]
+      name                          = "ms-performance"
     }
   }
 }
