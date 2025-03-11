@@ -25,3 +25,8 @@ variable "builtFrom" {
   description = "Repo the resources are built from!"
   default     = "hmcts/azure-monitor-data-collection-rules"
 }
+
+variable "tag_env" {
+  type        = string
+  description = "The environment to be used in the tags."
+}
