@@ -4,6 +4,7 @@ resource "azurerm_monitor_data_collection_rule" "windows_data_collection_rule" {
   location            = var.location
   kind                = "Windows"
   description         = "A data collection rule for collecting Windows event logs and sending them to the appropriate log analytics workspace."
+  tags                = module.tags.common_tags
 
   destinations {
     log_analytics {
@@ -36,6 +37,7 @@ resource "azurerm_monitor_data_collection_rule" "linux_data_collection_rule" {
   location            = var.location
   kind                = "Linux"
   description         = "A data collection rule for collecting Linux syslog and performance counters and sending them to the appropriate log analytics workspace."
+  tags                = module.tags.common_tags
 
   destinations {
     log_analytics {
