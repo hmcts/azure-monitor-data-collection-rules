@@ -29,5 +29,4 @@ variable "builtFrom" {
 variable "tag_env" {
   type        = string
   description = "The environment to be used in the tags."
-  default     = var.env
 }
