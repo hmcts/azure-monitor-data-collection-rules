@@ -49,6 +49,13 @@ parameters:
         service_connection: "DCD-CNP-DEV"
         dependsOn: "Precheck"
 
+      - stage: "qa"
+        environment: "qa"
+        resource_group_name: azure-control-dev-rg
+        component: "dcr"
+        service_connection: "DCD-CNP-QA"
+        dependsOn: "Precheck"
+
       - stage: "prod"
         environment: "prod"
         resource_group_name: azure-control-prod-rg
