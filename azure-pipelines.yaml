@@ -51,7 +51,7 @@ parameters:
 
       - stage: "qa"
         environment: "qa"
-        resource_group_name: azure-control-dev-rg
+        resource_group_name: azure-control-test-rg
         component: "dcr"
         service_connection: "DCD-CNP-QA"
         dependsOn: "Precheck"
